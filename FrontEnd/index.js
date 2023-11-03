@@ -90,6 +90,7 @@ const tokenAdmin = localStorage.getItem("token");
 const administrator = document.querySelector(".js__modal");
 const loginButton = document.getElementById("loginButton");
 const blackBar = document.querySelector(".blackBar");
+const hiddenContainer = document.getElementById("container-filter");
 
 //****************************  Vérification de l'état de connexion et gestion du mode administrateur **********************//
 
@@ -99,6 +100,7 @@ const stateLoginButton = function () {
     loginButton.textContent = "logout";
     administrator.style.display = null;
     blackBar.style.display = null;
+    hiddenContainer.style.display = "none";
     loginButton.addEventListener("click", () => {
       localStorage.removeItem("token");
       alert("Vous avez été déconnecté.");

@@ -83,6 +83,7 @@ const deletePictureApi = async (pictureData) => {
     );
     if (response.ok) {
       console.log("Image " + pictureData + " supprimée de l'Api");
+      alert("La photo est supprimée");
     } else {
       console.error("Erreur lors de la suppression de l'image de l'API");
     }
