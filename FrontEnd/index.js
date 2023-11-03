@@ -77,8 +77,10 @@ const filterWorks = (categoryName) => {
   const worksFiltre =
     categoryName === "Tous"
       ? worksData
-      : worksData.filter((work) => categoryName === work.category.name);
-
+      : worksData.filter(
+          (work) => work.category && categoryName === work.category.name
+        );
+  console.log(worksFiltre);
   worksDisplay(worksFiltre);
 };
 

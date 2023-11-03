@@ -52,14 +52,12 @@ const openModal = function (e) {
       imageParent.remove();
       console.log("Image " + pictureData + " supprimée");
       // suprime l'image ainsi que l'api au click
-      // deletePictureApi(pictureData);
+      deletePictureApi(pictureData);
       // Supprime l'image de la galerie existante
-      const updatedWorksData = worksData.filter(
-        (work) => work.id !== parseInt(pictureData)
-      );
+      worksData = worksData.filter((work) => work.id !== parseInt(pictureData));
 
-      // Actualise la galerie
-      worksDisplay(updatedWorksData);
+      //   // // Actualise la galerie
+      worksDisplay(worksData);
     });
   });
 
@@ -184,14 +182,14 @@ imageInput.addEventListener("change", changeBtnColor);
 
 buttonValid.addEventListener("click", async (e) => {
   //Recuperation des champs
+  const imageFile = imageInput.files[0];
   const title = titleInput.value;
   const category = categorySelect.value;
-  const imageFile = imageInput.files[0];
 
-  if (title && category && imageFile) {
+  if (imageFile && title && category) {
     const formData = new FormData();
-    formData.append("title", title);
     formData.append("image", imageFile);
+    formData.append("title", title);
     formData.append("category", category);
 
     try {
@@ -202,10 +200,12 @@ buttonValid.addEventListener("click", async (e) => {
         },
         body: formData,
       });
+      console.log(formData);
 
       if (response.ok) {
         let newWorks = await response.json();
-        newWorks.categoryId = parseInt(newWorks.categoryId);
+        newWorks.category = parseInt(newWorks.category);
+        console.log(newWorks);
         worksData.push(newWorks);
         worksDisplay(worksData);
         modal2.style.display = "none";
