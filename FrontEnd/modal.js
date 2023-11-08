@@ -22,7 +22,7 @@ const openModal = function (e) {
   target.removeAttribute("aria-hidden");
   target.setAttribute("arial-modal", "true");
 
-  // affiche la gallerie qui est dans le swagger
+  // affiche la gallerie qui est dans l'api
 
   const figure = document.querySelector(".gallery__modal");
   figure.innerHTML = worksData
@@ -124,7 +124,7 @@ const returnModal = function () {
 };
 returnModal();
 
-//****************************  Fonction Pour afficher charger l'image **********************//
+//****************************  Fonction Pour afficher / charger l'image **********************//
 
 // //on simule un click sur le champ input file
 button.addEventListener("click", () => {
@@ -149,13 +149,18 @@ function showFile(file) {
   let fileExtension = ["image/jpeg", "image/jpg", "image/png"];
   //  on verifie la validité du type du fichier
   if (fileExtension.includes(fileType)) {
-    let fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
+    // on verifie la taille du fichier
+    if (file.size <= 4 * 1024 * 1024) {
+      let fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
 
-    fileReader.onload = () => {
-      let fileUrl = fileReader.result;
-      image.src = fileUrl;
-    };
+      fileReader.onload = () => {
+        let fileUrl = fileReader.result;
+        image.src = fileUrl;
+      };
+    } else {
+      alert("L'image dépasse la taille maximale de 4 mo.");
+    }
   } else {
     alert("Ceci n'est pas une image");
   }

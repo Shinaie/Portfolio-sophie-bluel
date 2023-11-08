@@ -1,4 +1,4 @@
-//****************************  Variables globales pour les données des travaux et d es catégories **********************//
+//****************************  Variables globales pour les données des travaux et des catégories **********************//
 
 let worksData = [];
 let categoriesData = [];

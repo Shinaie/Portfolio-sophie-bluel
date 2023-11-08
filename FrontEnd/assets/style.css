@@ -388,7 +388,7 @@ footer nav ul {
 .modal__wrapper {
   overflow: auto;
   width: 600px;
-  max-height: 670px;
+  /* max-height: 670px; */
   padding: 20px;
   background: white;
   border-radius: 10px;
