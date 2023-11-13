@@ -50,21 +50,32 @@ const buttons = (categoriesData) => {
   //****************************  Bouton "Tous" pour afficher tous les travaux **********************//
 
   const buttonAll = document.createElement("button");
-  buttonAll.className = "btn";
+  buttonAll.className = "btn activated";
   buttonAll.dataset.id = "0";
   buttonAll.textContent = "Tous";
   buttonAll.addEventListener("click", () => {
-    filterWorks("Tous");
+    if (buttonAll !== activeButton) {
+      activeButton.classList.remove("activated");
+      buttonAll.classList.add("activated");
+      activeButton = buttonAll;
+      filterWorks("Tous");
+    }
   });
   containerFilter.appendChild(buttonAll);
 
   //****************************  Création des boutons pour chaque catégorie **********************//
+  let activeButton = buttonAll;
 
   categoriesData.forEach((category) => {
     const bouton = document.createElement("button");
     bouton.classList.add("btn");
     bouton.textContent = category.name;
     bouton.addEventListener("click", () => {
+      if (bouton !== activeButton) {
+        activeButton.classList.remove("activated");
+        bouton.classList.add("activated");
+        activeButton = bouton;
+      }
       filterWorks(category.name);
     });
     containerFilter.appendChild(bouton);

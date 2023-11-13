@@ -260,6 +260,11 @@ li:hover {
   color: white;
 }
 
+.activated {
+  background-color: #1d6154;
+  color: white;
+}
+
 #container-filter {
   display: flex;
   justify-content: center;
